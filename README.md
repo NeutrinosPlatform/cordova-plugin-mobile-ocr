@@ -1,5 +1,5 @@
-|[Intro](#cordova-plugin-mobile-ocr) | [Functional_Overview](#functional-overview) | [Supported_Platforms](#supported-platforms) | [Installation](#installation) | [Plugin_Usage](#plugin-usage) | [Examples](#examples) | [More_about_us!](#more-about-us)|
-|:---:|:------:|:---:|:---:|:---:|:---:|:---:|
+|[Intro](#cordova-plugin-mobile-ocr) | [Supported_Platforms](#supported-platforms) | [Installation](#installation) | [Plugin_Usage](#plugin-usage) | [Examples](#examples) | [More_about_us!](#more-about-us)|
+|:---:|:------:|:---:|:---:|:---:|:---:|
 
 
 # cordova-plugin-mobile-ocr
@@ -15,15 +15,6 @@ function onDeviceReady() {
 console.log(textocr);
 }
 
-# Functional Overview
-```mermaid
-graph LR
-A[Other Plugin] --> B(Base64)
-A --> C(Uri)
-B --> D{Mobile Ocr}
-C --> D
-D -- Success --> E(Recognised text as String)
-```
 # Supported Platforms
 
 - Android
@@ -108,22 +99,22 @@ Please use `cordova plugin add cordova-plugin-camera` or `cordova plugin add Usi
 navigator.camera.getPicture(onSuccess, onFail, { quality: 100, correctOrientation: true });
 
 function onSuccess(imageData) {
-textocr.recText(0, 3, imageData, onSuccess, onFail);
-// for sourceType Use 0,1,2,3 or 4
-// for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
-function onSuccess(recognizedText) {
-//var element = document.getElementById('pp');
-//element.innerHTML=recognizedText;
-//Use above two lines to show recognizedText in html
-console.log(recognizedText)
-alert(recognizedText);
+      textocr.recText(0, 3, imageData, onSuccess, onFail);
+      // for sourceType Use 0,1,2,3 or 4
+      // for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
+      function onSuccess(recognizedText) {
+            //var element = document.getElementById('pp');
+            //element.innerHTML=recognizedText;
+            //Use above two lines to show recognizedText in html
+            console.log(recognizedText)
+            alert(recognizedText);
+      }
+      function onFail(message) {
+            alert('Failed because: ' + message);
+      }
 }
 function onFail(message) {
-alert('Failed because: ' + message);
-}
-}
-function onFail(message) {
-alert('Failed because: ' + message);
+      alert('Failed because: ' + message);
 }
 
 ```
@@ -134,22 +125,22 @@ alert('Failed because: ' + message);
 scan.scanDoc(1, onSuccess, onFail);
 
 function onSuccess(imageURI) {
-textocr.recText(0, 3 imageURI, onSuccess, onFail); 
-// for sourceType Use 0,2 // 1,3,4 won't work
-// for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
-function onSuccess(recognizedText) {
-//var element = document.getElementById('pp');
-//element.innerHTML=recognizedText;
-//Use above two lines to show recognizedText in html
-console.log(recognizedText)
-alert(recognizedText);
+      textocr.recText(0, 3 imageURI, onSuccess, onFail); 
+      // for sourceType Use 0,2 // 1,3,4 won't work
+      // for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
+      function onSuccess(recognizedText) {
+            //var element = document.getElementById('pp');
+            //element.innerHTML=recognizedText;
+            //Use above two lines to show recognizedText in html
+            console.log(recognizedText)
+            alert(recognizedText);
+      }
+      function onFail(message) {
+            alert('Failed because: ' + message);
+      }
 }
 function onFail(message) {
-alert('Failed because: ' + message);
-}
-}
-function onFail(message) {
-alert('Failed because: ' + message);
+      alert('Failed because: ' + message);
 }
 ```
 
