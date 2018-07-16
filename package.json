@@ -1,0 +1,37 @@
+{
+  "name": "cordova-plugin-mobile-ocr",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NeutrinosPlatform/cordova-plugin-mobile-ocr"
+  },
+  "cordova": {
+    "id": "cordova-plugin-mobile-ocr",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "text",
+    "ocr",
+    "text recognition",
+    "optical",
+    "character",
+    "recognition",
+    "optical character recognition",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "mobile ocr"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+      "cordova-android": ">=6.4.0",
+      "cordova-ios": ">=4.3.0"}
+  },
+  "author": "jatahworx",
+  "license": "ISC",
+  "description": "cordova plugin for mobile ocr text recognition"
+}
