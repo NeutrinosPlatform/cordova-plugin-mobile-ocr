@@ -1,4 +1,4 @@
-|[Intro](#cordova-plugin-mobile-ocr) | [Supported_Platforms](#supported-platforms) | [Installation](#installation) | [Plugin_Usage](#plugin-usage) | [Examples](#examples) | [More_about_us!](#more-about-us)|
+|[Introduction](#cordova-plugin-mobile-ocr) | [Supported_Platforms](#supported-platforms) | [Installation_Steps](#installation-steps) | [Plugin_Usage](#plugin-usage) | [Examples](#examples) | [More_about_us!](#more-about-us)|
 |:---:|:------:|:---:|:---:|:---:|:---:|
 
 
@@ -20,7 +20,7 @@ console.log(textocr);
 - Android
 - iOS
 
-# Installation
+# Installation Steps
 
 This requires cordova 7.1.0+ , cordova android 6.4.0+ and cordova ios 4.3.0+
 npm link :- https://www.npmjs.com/package/cordova-plugin-mobile-ocr
