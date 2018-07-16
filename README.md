@@ -92,7 +92,7 @@ element.innerHTML=recognizedText;` in js
 > *Note :- This plugin doesn't handle permissions as it only requires the URIs or Base64 data of images and thus expects the other plugins that provide it the URI or Base64 data to handle permissions.*
 
 # Working Examples
-Please use `cordova plugin add cordova-plugin-camera` or `cordova plugin add Using cordova-plugin-document-scanner` before using the following examples.
+Please use `cordova plugin add cordova-plugin-camera` or `cordova plugin add cordova-plugin-document-scanner` before using the following examples.
 
 >*Note :- The cordova-plugin-mobile-ocr plugin will not automatically download either of these plugins as dependencies (This is because this plugin can be used as standalone plugin which can accept URIs or Base64 data through any method or plugin).*
 
