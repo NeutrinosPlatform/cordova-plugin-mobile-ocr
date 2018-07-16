@@ -10,10 +10,12 @@
 
 This plugin defines a global `textocr` object, which provides an method that accepts image uri or base64 inputs. If some text was detected in the image, this text will be returned as a string. The imageuri or base64 can be send to the plugin using any another plugin like [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera) or [cordova-plugin-document-scanner](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner). Although the object is attached to the global scoped `window`, it is not available until after the `deviceready` event.
 
+```
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 console.log(textocr);
 }
+```
 
 # Supported Platforms
 
@@ -22,17 +24,17 @@ console.log(textocr);
 
 # Installation Steps
 
-This requires cordova 7.1.0+ , cordova android 6.4.0+ and cordova ios 4.3.0+
+This requires cordova 7.1.0+ , cordova android 6.4.0+ and cordova ios 4.3.0+ <br/>
 npm link :- https://www.npmjs.com/package/cordova-plugin-mobile-ocr
 
-cordova plugin add cordova-plugin-mobile-ocr
+`cordova plugin add cordova-plugin-mobile-ocr`
 
 For **Android** that is all.
 
 For **iOS** please also follow the steps below.
 - Once the iOS platform is added in command line, change directory to where podfile is found. Example location :- (myapp/platforms/ios). 
 - Then in command line do `pod update`. 
-- Now open myapp.xcworkspace which is usually found in the same directory as the podfile, then build and run. 
+- Now open myapp.xcworkspace which is usually found in the same directory as the podfile, then build and run. <br/> 
 *Note :- if you use myapp.xcodeproj to build and run, it will not work and it will show a linker error.*
 
 # Plugin Usage
