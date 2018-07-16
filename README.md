@@ -1,10 +1,10 @@
-|[Introduction](#cordova-plugin-mobile-ocr) | [Supported_Platforms](#supported-platforms) | [Installation_Steps](#installation-steps) | [Plugin_Usage](#plugin-usage) | [Examples](#examples) | [More_about_us!](#more-about-us)|
+|[Introduction](#cordova-plugin-mobile-ocr) | [Supported_Platforms](#supported-platforms) | [Installation_Steps](#installation-steps) | [Plugin_Usage](#plugin-usage) | [Working_Examples](#working-examples) | [More_about_us!](#more-about-us)|
 |:---:|:------:|:---:|:---:|:---:|:---:|
 
 
 # cordova-plugin-mobile-ocr
 
-> *This plugin was made possible because of [google mobile vision text recognition API](https://developers.google.com/vision/android/text-overview). The supported languages are listed in the [link](https://developers.google.com/vision/android/text-overview). This plugin is absolutely free and will work offline once install is complete. All required files required for Text Recognition are downloaded during install if necessary space is available.*
+> This plugin was made possible because of [google mobile vision text recognition API](https://developers.google.com/vision/android/text-overview). The supported languages are listed in the [link](https://developers.google.com/vision/android/text-overview). This plugin is absolutely free and will work offline once install is complete. All required files required for Text Recognition are downloaded during install if necessary space is available.
 
 
 
@@ -89,7 +89,7 @@ element.innerHTML=recognizedText;` in js
 
 > *Note :- This plugin doesn't handle permissions as it only requires the URIs or Base64 data of images and thus expects the other plugins that provide it the URI or Base64 data to handle permissions.*
 
-# Examples
+# Working Examples
 Please use `cordova plugin add cordova-plugin-camera` or `cordova plugin add Using cordova-plugin-document-scanner` before using the following examples.
 
 >*Note :- The cordova-plugin-mobile-ocr plugin will not automatically download either of these plugins as dependencies (This is because this plugin can be used as standalone plugin which can accept URIs or Base64 data through any method or plugin).*
