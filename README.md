@@ -33,7 +33,7 @@ For **Android** that is all.
 
 For **iOS** please also follow the steps below.
 - Once the iOS platform is added in command line, change directory to where podfile is found. Example location :- (myapp/platforms/ios). 
-- Then in command line do `pod update`. 
+- Make sure you have [cocoapods](https://cocoapods.org/) installed then in command line do `pod update`. 
 - Now open myapp.xcworkspace which is usually found in the same directory as the podfile, then build and run. <br/> 
 *Note :- if you use myapp.xcodeproj to build and run, it will not work and it will show a linker error.*
 
