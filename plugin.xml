@@ -36,7 +36,7 @@
     </config-file>
    
     <source-file src="src/android/Textocr.java" target-dir="src/com/neutrinos/ocrplugin/" />
-    <framework src="com.google.android.gms:play-services-vision:+" />
+    <framework src="com.google.android.gms:play-services-vision:11.6.2" />
     
   </platform>
 
