@@ -44,7 +44,7 @@ public class Textocr extends CordovaPlugin {
     //         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         //callbackContext = callbackContext;
         if (action.equals("recText")) {
             cordova.getThreadPool().execute(new Runnable() {
@@ -86,11 +86,11 @@ public class Textocr extends CordovaPlugin {
 
                                         if((argstype==NORMFILEURI || argstype==NORMNATIVEURI)&& uri != null) // normal ocr
                                         {
-                                            bitmap = MediaStore.Images.Media.getBitmap(cordova.getContext().getContentResolver(), uri);
+                                            bitmap = MediaStore.Images.Media.getBitmap(cordova.getActivity().getBaseContext().getContentResolver(), uri);
                                         }
                                         else if((argstype==FASTFILEURI || argstype==FASTNATIVEURI) && uri != null) //fast ocr (might be less accurate)
                                         {
-                                            bitmap = decodeBitmapUri(cordova.getContext(), uri);
+                                            bitmap = decodeBitmapUri(cordova.getActivity().getBaseContext(), uri);
                                         }
 
                                 }
@@ -130,7 +130,7 @@ public class Textocr extends CordovaPlugin {
                             callbackContext.sendPluginResult(r);
                         }
 
-                        detector = new TextRecognizer.Builder(cordova.getContext()).build();
+                        detector = new TextRecognizer.Builder(cordova.getActivity().getBaseContext()).build();
 
                         if (detector.isOperational() && bitmap != null)
                         {
