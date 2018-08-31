@@ -109,7 +109,7 @@ function onSuccess(imageData) {
             //var element = document.getElementById('pp');
             //element.innerHTML=recognizedText;
             //Use above two lines to show recognizedText in html
-            console.log(recognizedText)
+            console.log(recognizedText);
             alert(recognizedText);
       }
       function onFail(message) {
@@ -135,7 +135,7 @@ function onSuccess(imageURI) {
             //var element = document.getElementById('pp');
             //element.innerHTML=recognizedText;
             //Use above two lines to show recognizedText in html
-            console.log(recognizedText)
+            console.log(recognizedText);
             alert(recognizedText);
       }
       function onFail(message) {
