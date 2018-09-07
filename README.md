@@ -128,7 +128,7 @@ function onFail(message) {
 scan.scanDoc(1, onSuccess, onFail);
 
 function onSuccess(imageURI) {
-      textocr.recText(0, 3 imageURI, onSuccess, onFail); 
+      textocr.recText(0, 3, imageURI, onSuccess, onFail); 
       // for sourceType Use 0,2 // 1,3,4 won't work
       // for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
       function onSuccess(recognizedText) {
