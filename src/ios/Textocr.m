@@ -8,19 +8,11 @@
 #define FASTNATIVEURI ((int) 3)
 #define BASE64 ((int) 4)
 
-#define BLOCKS ((int) 0)
-#define LINES ((int) 1)
-#define WORDS ((int) 2)
-#define ALL ((int) 3)
-
 - (void)recText:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"%s","I AM HERE AT THE STAAAAAART!!!");
     [self.commandDelegate runInBackground:^{
-        NSLog(@"%s","I AM bkg!!");
         _commandglo = command;
         int stype = NORMFILEURI; // sourceType
-        int rtype = ALL; //returnType
         NSString* name;
         self.image = NULL;
         @try {
@@ -32,15 +24,7 @@
             // 3 FASTNATIVEURI
             // 4 BASE64
             
-            NSString *rt = [[_commandglo arguments] objectAtIndex:1];
-            rtype = [rt intValue];
-            // 0 BLOCKS
-            // 1 LINES
-            // 2 WORDS
-            // 3 ALL
-            
-            name = [[_commandglo arguments] objectAtIndex:2];
-
+            name = [[_commandglo arguments] objectAtIndex:1];
         }
         @catch (NSException *exception) {
             CDVPluginResult* result = [CDVPluginResult
@@ -98,27 +82,206 @@
             self.textDetector = [GMVDetector detectorOfType:GMVDetectorTypeText options:nil];
             NSArray<GMVTextBlockFeature *> *features = [self.textDetector featuresInImage:self.image
                                                                                   options:nil];
-            
             int count = 0;
-            NSMutableString* blocks = [NSMutableString string];
-            NSMutableString* lines = [NSMutableString string];
-            NSMutableString* words = [NSMutableString string];
-            NSMutableString* all = [NSMutableString string];
+            
+            NSMutableDictionary* resultobjmut = [[NSMutableDictionary alloc] init];
+            NSMutableDictionary* blockobj = [[NSMutableDictionary alloc] init];
+            NSMutableDictionary* lineobj = [[NSMutableDictionary alloc] init];
+            NSMutableDictionary* wordobj = [[NSMutableDictionary alloc] init];
+            
+            NSMutableArray* blocktext = [[NSMutableArray alloc] init];
+            NSMutableArray* blocklanguages = [[NSMutableArray alloc] init];
+            NSMutableArray* blockpoints = [[NSMutableArray alloc] init];
+            NSMutableArray* blockframe = [[NSMutableArray alloc] init];
+            
+            NSMutableArray* linetext = [[NSMutableArray alloc] init];
+            NSMutableArray* linelanguages = [[NSMutableArray alloc] init];
+            NSMutableArray* linepoints = [[NSMutableArray alloc] init];
+            NSMutableArray* lineframe = [[NSMutableArray alloc] init];
+            
+            NSMutableArray* wordtext = [[NSMutableArray alloc] init];
+            NSMutableArray* wordlanguages = [[NSMutableArray alloc] init];
+            NSMutableArray* wordpoints = [[NSMutableArray alloc] init];
+            NSMutableArray* wordframe = [[NSMutableArray alloc] init];
+
             // Iterate over each text block.
             for (GMVTextBlockFeature *textBlock in features) {
                 count++;
-                [blocks appendString:[textBlock.value mutableCopy]];
-                [blocks appendString:@"\n"];
-                [blocks appendString:@"\n"];
+
+                //Block Text
+                [blocktext addObject:textBlock.value];
+                
+                //Block Language
+                if( textBlock.language ){
+                    // do something if object isn't nil
+                    [blocklanguages addObject:textBlock.language];
+                } else {
+                    // initialize object and do something
+                    [blocklanguages addObject:[NSNull null]];
+                }
+                
+                //Block Corner Points
+                NSString *x1 = [NSString stringWithFormat:@"%f",textBlock.cornerPoints[0].CGPointValue.x];
+                NSString *y1 = [NSString stringWithFormat:@"%f",textBlock.cornerPoints[0].CGPointValue.y];
+                
+                NSString *x2 = [NSString stringWithFormat:@"%f",textBlock.cornerPoints[1].CGPointValue.x];
+                NSString *y2 = [NSString stringWithFormat:@"%f",textBlock.cornerPoints[1].CGPointValue.y];
+                
+                NSString *x3 = [NSString stringWithFormat:@"%f",textBlock.cornerPoints[2].CGPointValue.x];
+                NSString *y3 = [NSString stringWithFormat:@"%f",textBlock.cornerPoints[2].CGPointValue.y];
+                
+                NSString *x4 = [NSString stringWithFormat:@"%f",textBlock.cornerPoints[3].CGPointValue.x];
+                NSString *y4 = [NSString stringWithFormat:@"%f",textBlock.cornerPoints[3].CGPointValue.y];
+                
+                NSDictionary* bpoobj = @{
+                                         @"x1": x1,
+                                         @"y1": y1,
+                                         @"x2": x2,
+                                         @"y2": y2,
+                                         @"x3": x3,
+                                         @"y3": y3,
+                                         @"x4": x4,
+                                         @"y4": y4,
+                                         };
+                [blockpoints addObject:bpoobj];
+                
+                //Block Frame
+                CGFloat xfloat =  textBlock.bounds.origin.x;
+                CGFloat yfloat =  textBlock.bounds.origin.y;
+                CGFloat heightfloat =  textBlock.bounds.size.height;
+                CGFloat widthfloat =  textBlock.bounds.size.width;
+                
+                NSString *x = [NSString stringWithFormat:@"%f",xfloat];
+                NSString *y = [NSString stringWithFormat:@"%f",yfloat];
+                NSString *height = [NSString stringWithFormat:@"%f",heightfloat];
+                NSString *width = [NSString stringWithFormat:@"%f",widthfloat];
+                
+                NSDictionary* bframeobj = @{
+                                            @"x": x,
+                                            @"y": y,
+                                            @"height": height,
+                                            @"width": width
+                                            };
+                [blockframe addObject:bframeobj];
+                
                 
                 // For each text block, iterate over each line.
-                for (GMVTextLineFeature *textLine in textBlock.lines) {               
-                    [lines appendString:[textLine.value mutableCopy]];
-                    [lines appendString:@"\n"];
+                for (GMVTextLineFeature *textLine in textBlock.lines) {
+                
+                    //Line Text
+                    [linetext addObject:textLine.value];
+                    
+                    //Line Language
+                    if( textLine.language ){
+                        // do something if object isn't nil
+                        [linelanguages addObject:textLine.language];
+                    } else {
+                        // initialize object and do something
+                        [linelanguages addObject:[NSNull null]];
+                    }
+                    
+                    ////Line Corner Points
+                    NSString *x1 = [NSString stringWithFormat:@"%f",textLine.cornerPoints[0].CGPointValue.x];
+                    NSString *y1 = [NSString stringWithFormat:@"%f",textLine.cornerPoints[0].CGPointValue.y];
+                    
+                    NSString *x2 = [NSString stringWithFormat:@"%f",textLine.cornerPoints[1].CGPointValue.x];
+                    NSString *y2 = [NSString stringWithFormat:@"%f",textLine.cornerPoints[1].CGPointValue.y];
+                    
+                    NSString *x3 = [NSString stringWithFormat:@"%f",textLine.cornerPoints[2].CGPointValue.x];
+                    NSString *y3 = [NSString stringWithFormat:@"%f",textLine.cornerPoints[2].CGPointValue.y];
+                    
+                    NSString *x4 = [NSString stringWithFormat:@"%f",textLine.cornerPoints[3].CGPointValue.x];
+                    NSString *y4 = [NSString stringWithFormat:@"%f",textLine.cornerPoints[3].CGPointValue.y];
+                    
+                    NSDictionary* lpoobj = @{
+                                             @"x1": x1,
+                                             @"y1": y1,
+                                             @"x2": x2,
+                                             @"y2": y2,
+                                             @"x3": x3,
+                                             @"y3": y3,
+                                             @"x4": x4,
+                                             @"y4": y4,
+                                             };
+                    [linepoints addObject:lpoobj];
+                    
+                    //Line Frame
+                    CGFloat xfloat =  textLine.bounds.origin.x;
+                    CGFloat yfloat =  textLine.bounds.origin.y;
+                    CGFloat heightfloat =  textLine.bounds.size.height;
+                    CGFloat widthfloat =  textLine.bounds.size.width;
+                    
+                    NSString *x = [NSString stringWithFormat:@"%f",xfloat];
+                    NSString *y = [NSString stringWithFormat:@"%f",yfloat];
+                    NSString *height = [NSString stringWithFormat:@"%f",heightfloat];
+                    NSString *width = [NSString stringWithFormat:@"%f",widthfloat];
+                    
+                    NSDictionary* lframeobj = @{
+                                                @"x": x,
+                                                @"y": y,
+                                                @"height": height,
+                                                @"width": width
+                                                };
+                    [lineframe addObject:lframeobj];
+                    
+                    
                     // For each line, iterate over each word.
                     for (GMVTextElementFeature *textElement in textLine.elements) {
-                        [words appendString:[textElement.value mutableCopy]];
-                        [words appendString:@","];  
+
+                        //Word Text
+                        [wordtext addObject:textElement.value];
+                        
+                        //Word Language
+                        if( textLine.language ){
+                            // do something if object isn't nil
+                            [wordlanguages addObject:textLine.language];
+                        } else {
+                            // initialize object and do something
+                            [wordlanguages addObject:[NSNull null]];
+                        }
+                        //Word Corner Points
+                        NSString *x1 = [NSString stringWithFormat:@"%f",textElement.cornerPoints[0].CGPointValue.x];
+                        NSString *y1 = [NSString stringWithFormat:@"%f",textElement.cornerPoints[0].CGPointValue.y];
+                        
+                        NSString *x2 = [NSString stringWithFormat:@"%f",textElement.cornerPoints[1].CGPointValue.x];
+                        NSString *y2 = [NSString stringWithFormat:@"%f",textElement.cornerPoints[1].CGPointValue.y];
+                        
+                        NSString *x3 = [NSString stringWithFormat:@"%f",textElement.cornerPoints[2].CGPointValue.x];
+                        NSString *y3 = [NSString stringWithFormat:@"%f",textElement.cornerPoints[2].CGPointValue.y];
+                        
+                        NSString *x4 = [NSString stringWithFormat:@"%f",textElement.cornerPoints[3].CGPointValue.x];
+                        NSString *y4 = [NSString stringWithFormat:@"%f",textElement.cornerPoints[3].CGPointValue.y];
+                        
+                        NSDictionary* wpoobj = @{
+                                                 @"x1": x1,
+                                                 @"y1": y1,
+                                                 @"x2": x2,
+                                                 @"y2": y2,
+                                                 @"x3": x3,
+                                                 @"y3": y3,
+                                                 @"x4": x4,
+                                                 @"y4": y4,
+                                                 };
+                        [wordpoints addObject:wpoobj];
+                        
+                        //Word Frame
+                        CGFloat xfloat =  textElement.bounds.origin.x;
+                        CGFloat yfloat =  textElement.bounds.origin.y;
+                        CGFloat heightfloat =  textElement.bounds.size.height;
+                        CGFloat widthfloat =  textElement.bounds.size.width;
+                        
+                        NSString *x = [NSString stringWithFormat:@"%f",xfloat];
+                        NSString *y = [NSString stringWithFormat:@"%f",yfloat];
+                        NSString *height = [NSString stringWithFormat:@"%f",heightfloat];
+                        NSString *width = [NSString stringWithFormat:@"%f",widthfloat];
+                        
+                        NSDictionary* wframeobj = @{
+                                                    @"x": x,
+                                                    @"y": y,
+                                                    @"height": height,
+                                                    @"width": width
+                                                    };
+                        [wordframe addObject:wframeobj];
                     }
                 }
             }
@@ -128,43 +291,43 @@
                                            messageAsString:@"No text in image"];
                 [self.commandDelegate sendPluginResult:result callbackId:_commandglo.callbackId];
             }
-            else {
-                NSString* message;
-                if (rtype==BLOCKS)
-                {
-                    message = blocks;
-                }
+            else
+            {
+                blockobj = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                             blocktext,@"blocktext",
+                             blocklanguages,@"blocklanguages",
+                             blockpoints,@"blockpoints",
+                             blockframe,@"blockframe", nil] mutableCopy];
                 
-                else if (rtype==LINES)
-                {
-                    message = lines;
-                }
+                NSDictionary *bobj = [NSDictionary dictionaryWithDictionary:blockobj];
                 
-                else if (rtype==WORDS)
-                {
-                    message = words;
-                }
                 
-                else if (rtype==ALL)
-                {
-                    [all appendString:blocks];
-                    [all appendString:@("\n")];
-                    [all appendString:lines];
-                    [all appendString:@("\n")];
-                    [all appendString:words];
-                    message = all;
-                }
-                else
-                {
-                    CDVPluginResult* result = [CDVPluginResult
-                                               resultWithStatus:CDVCommandStatus_ERROR
-                                               messageAsString:@"Return Type can only be 0,1,2 oe 3"];
-                    [self.commandDelegate sendPluginResult:result callbackId:_commandglo.callbackId];
-                }
-                CDVPluginResult* result = [CDVPluginResult
-                                           resultWithStatus:CDVCommandStatus_OK
-                                           messageAsString:message];
-                [self.commandDelegate sendPluginResult:result callbackId:_commandglo.callbackId];
+                lineobj = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                            linetext,@"linetext",
+                            linelanguages,@"linelanguages",
+                            linepoints,@"linepoints",
+                            lineframe,@"lineframe", nil] mutableCopy];
+                NSDictionary *lobj = [NSDictionary dictionaryWithDictionary:lineobj];
+                
+                
+                wordobj = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                            wordtext,@"wordtext",
+                            wordlanguages,@"wordlanguages",
+                            wordpoints,@"wordpoints",
+                            wordframe,@"wordframe", nil] mutableCopy];
+                NSDictionary *wobj = [NSDictionary dictionaryWithDictionary:wordobj];
+                
+                
+                resultobjmut = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                 bobj,@"blocks",
+                                 lobj,@"lines",
+                                 wobj,@"words", nil] mutableCopy];
+                NSDictionary *resultobj = [NSDictionary dictionaryWithDictionary:resultobjmut];
+                
+                CDVPluginResult* resultcor = [CDVPluginResult
+                                              resultWithStatus:CDVCommandStatus_OK
+                                              messageAsDictionary:resultobj];
+                [self.commandDelegate sendPluginResult:resultcor callbackId:_commandglo.callbackId];
             }
         }
         else
