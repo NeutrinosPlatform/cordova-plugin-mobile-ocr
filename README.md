@@ -58,6 +58,8 @@ The **`sourceType`** parameter can take values 0,1,2,3 or 4 each of which are ex
 >*Note :- NORMNATIVEURI & FASTNATIVEURI for iOS uses deprecated methods to access images. This is to support the [camera](https://github.com/apache/cordova-plugin-camera) plugin which still uses the deprecated methods to return native image URI's using [ALAssetsLibrary](https://developer.apple.com/documentation/assetslibrary/alassetslibrary). This plugin uses non deprecated [PHAsset](https://developer.apple.com/documentation/photokit/phasset?language=objc) library whose deprecated method [fetchAssets(withALAssetURLs:options:)](https://developer.apple.com/documentation/photokit/phasset/1624782-fetchassets) is used to retrieve the image data.*
 
 - **returnType**
+> Note :- This input is no longer accepted from plugin version 2.0.0 and above. <br>
+
 The **`returnType`** parameter can take values 0,1,2 or 3 each of which are explained in detail in the table below. If a wrong value is passed into this parameter it will default to 3 or `ALL`. See the image below the table to get a better understanding of `BLOCKS`, `LINES` and `WORDS`. Each of these (`BLOCKS`, `LINES` or `WORDS`) will contain the entire recognized text but they can be used for better formatting and thus are separated. `ALL` will contain all blocks first, followed by a new line character `\n`, followed by all lines, followed by another new line character `\n`, followed by all words. So using `ALL` will return duplicates.  `returnType` is an `Int` within the native code.
 
 | returnType     | returnConst   | Notes       |
@@ -102,7 +104,7 @@ Please use `cordova plugin add cordova-plugin-camera` or `cordova plugin add cor
 navigator.camera.getPicture(onSuccess, onFail, { quality: 100, correctOrientation: true });
 
 function onSuccess(imageData) {
-      textocr.recText(0, 3, imageData, onSuccess, onFail);
+      textocr.recText(0, /*3,*/ imageData, onSuccess, onFail); // removed returnType (here 3) from version 2.0.0
       // for sourceType Use 0,1,2,3 or 4
       // for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
       function onSuccess(recognizedText) {
@@ -128,7 +130,7 @@ function onFail(message) {
 scan.scanDoc(1, onSuccess, onFail);
 
 function onSuccess(imageURI) {
-      textocr.recText(0, 3, imageURI, onSuccess, onFail); 
+      textocr.recText(0, /*3,*/ imageURI, onSuccess, onFail); // removed returnType (here 3) from version 2.0.0
       // for sourceType Use 0,2 // 1,3,4 won't work
       // for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
       function onSuccess(recognizedText) {
