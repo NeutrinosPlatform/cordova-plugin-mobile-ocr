@@ -1,6 +1,7 @@
 |[Introduction](#cordova-plugin-mobile-ocr) | [Supported_Platforms](#supported-platforms) | [Installation_Steps](#installation-steps) | [Plugin_Usage](#plugin-usage) | [Working_Examples](#working-examples) | [More_about_us!](#more-about-us)|
 |:---:|:------:|:---:|:---:|:---:|:---:|
 
+> **BREAKING CHANGES** introduced in plugin version 2.0.0. Older version will run as expected!
 
 # cordova-plugin-mobile-ocr
 
