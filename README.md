@@ -41,7 +41,7 @@ For **iOS** please also follow the steps below.
 
 # Plugin Usage
 
-`textocr.recText(sourceType, returnType, uriOrBase, successCallback, errorCallback)`
+`textocr.recText(sourceType,  /*returnType,*/ uriOrBase, successCallback, errorCallback) //returnType no longer accepted from plugin version 2.x.x`
 - **textocr.recText**
 The **`textocr.recText`** function accepts image data as uri or base64 and uses google mobile vision to recognize text and return the recognized text as string on its successcallback.
 
