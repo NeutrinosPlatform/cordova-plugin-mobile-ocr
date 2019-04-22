@@ -234,7 +234,7 @@ The basic structure of the object is as follows :-
      - y - Key
      - height - Key
      - width - Key
-# Example Object for when no text in image
+# Example Object when no text in image
 ```json
 {
   "foundText" : false
