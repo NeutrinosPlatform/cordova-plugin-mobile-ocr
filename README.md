@@ -177,7 +177,7 @@ The text **linetext[0]** contains the languages **linelanguages[0]** and have a 
 
 The basic structure of the object is as follows :- 
 
-> **foundText** was added in plugin version 3.0.0 and above. In earlier plugin versions if image did not contain text the error callback was called. From 3.0.0 onwards all success callbacks will contain the `foundText` key with a boolean value. Letting the user know if a text was present in the image. if `foundText` is false, tetx was not found and hence the `blocks`, `lines`, `words` keys won't be returned
+> **foundText** was added in plugin version 3.0.0 and above. In earlier plugin versions if image did not contain text the error callback was called. From 3.0.0 onwards all success callbacks will contain the `foundText` key with a boolean value. Letting the user know if a text was present in the image. if `foundText` is false, text was not found and hence the `blocks`, `lines`, `words` keys won't be returned
 
  - **foundText** - **boolean** value that is true if image contains text else false
  - **blocks**
