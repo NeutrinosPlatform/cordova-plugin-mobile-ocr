@@ -286,10 +286,22 @@
                 }
             }
             if (count==0) {
-                CDVPluginResult* result = [CDVPluginResult
-                                           resultWithStatus:CDVCommandStatus_ERROR
-                                           messageAsString:@"No text in image"];
-                [self.commandDelegate sendPluginResult:result callbackId:_commandglo.callbackId];
+                // Used to return error if no text was found in image
+                // CDVPluginResult* result = [CDVPluginResult
+                //                            resultWithStatus:CDVCommandStatus_ERROR
+                //                            messageAsString:@"No text in image"];
+                // [self.commandDelegate sendPluginResult:result callbackId:_commandglo.callbackId];
+                
+                // Return success with an object if no text found
+                NSNumber *foundText = @NO;
+                resultobjmut = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                 foundText,@"foundText", nil] mutableCopy];
+                NSDictionary *resultobj = [NSDictionary dictionaryWithDictionary:resultobjmut];
+                
+                CDVPluginResult* resultcor = [CDVPluginResult
+                                              resultWithStatus:CDVCommandStatus_OK
+                                              messageAsDictionary:resultobj];
+                [self.commandDelegate sendPluginResult:resultcor callbackId:_commandglo.callbackId];
             }
             else
             {
@@ -317,8 +329,9 @@
                             wordframe,@"wordframe", nil] mutableCopy];
                 NSDictionary *wobj = [NSDictionary dictionaryWithDictionary:wordobj];
                 
-                
+                NSNumber *foundText = @YES;
                 resultobjmut = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                 foundText,@"foundText",
                                  bobj,@"blocks",
                                  lobj,@"lines",
                                  wobj,@"words", nil] mutableCopy];

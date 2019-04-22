@@ -1,7 +1,11 @@
 |[Introduction](#cordova-plugin-mobile-ocr) | [Supported_Platforms](#supported-platforms) | [Installation_Steps](#installation-steps) | [Plugin_Usage](#plugin-usage) | [Working_Examples](#working-examples) | [More_about_us!](#more-about-us)|
 |:---:|:------:|:---:|:---:|:---:|:---:|
 
-> **BREAKING CHANGES** introduced in plugin version 2.0.0. Older version will run as expected!
+> **BREAKING CHANGES** introduced in plugin version 2.0.0 and 3.0.0. Older version will run as expected!
+> In 2.x.x `returnType` input was removed!
+> In 3.x.x if no text was found in the image, the success callback will be called instead of the error callback along with a new key `foundText` with boolean value. Please see example objects at the very end for more explanation.
+
+> **DOCUMENTATION** here applies only to plugin ver 3.x.x! The respective documentation of each of the versions is available with the npm release
 
 # cordova-plugin-mobile-ocr
 
@@ -59,7 +63,7 @@ The **`sourceType`** parameter can take values 0,1,2,3 or 4 each of which are ex
 >*Note :- NORMNATIVEURI & FASTNATIVEURI for iOS uses deprecated methods to access images. This is to support the [camera](https://github.com/apache/cordova-plugin-camera) plugin which still uses the deprecated methods to return native image URI's using [ALAssetsLibrary](https://developer.apple.com/documentation/assetslibrary/alassetslibrary). This plugin uses non deprecated [PHAsset](https://developer.apple.com/documentation/photokit/phasset?language=objc) library whose deprecated method [fetchAssets(withALAssetURLs:options:)](https://developer.apple.com/documentation/photokit/phasset/1624782-fetchassets) is used to retrieve the image data.*
 
 - **returnType**
-> Note :- This input is no longer accepted from plugin version 2.0.0 and above. <br>
+> Note :- This input is **no longer accepted** from plugin version 2.0.0 and above. <br>
 
 The **`returnType`** parameter can take values 0,1,2 or 3 each of which are explained in detail in the table below. If a wrong value is passed into this parameter it will default to 3 or `ALL`. See the image below the table to get a better understanding of `BLOCKS`, `LINES` and `WORDS`. Each of these (`BLOCKS`, `LINES` or `WORDS`) will contain the entire recognized text but they can be used for better formatting and thus are separated. `ALL` will contain all blocks first, followed by a new line character `\n`, followed by all lines, followed by another new line character `\n`, followed by all words. So using `ALL` will return duplicates.  `returnType` is an `Int` within the native code.
 
@@ -173,6 +177,9 @@ The text **linetext[0]** contains the languages **linelanguages[0]** and have a 
 
 The basic structure of the object is as follows :- 
 
+> **foundText** was added in plugin version 3.0.0 and above. In earlier plugin versions if image did not contain text the error callback was called. From 3.0.0 onwards all success callbacks will contain the `foundText` key with a boolean value. Letting the user know if a text was present in the image. if `foundText` is false, tetx was not found and hence the `blocks`, `lines`, `words` keys won't be returned
+
+ - **foundText** - **boolean** value that is true if image contains text else false
  - **blocks**
    - **blocktext** - **Array** that contains each text block
    - **blocklanguages** - **Array** of languages (Currently returns unusable values)
@@ -227,9 +234,16 @@ The basic structure of the object is as follows :-
      - y - Key
      - height - Key
      - width - Key
+# Example Object for when no text in image
+```json
+{
+  "foundText" : false
+}
+```
 # iOS Example Object
 ```json
 {
+  "foundText" : true,
   "blocks": {
     "blocklanguages": [
       "[    \"<FIRVisionTextRecognizedLanguage: 0x1c4009800>\"]",
@@ -879,6 +893,7 @@ The basic structure of the object is as follows :-
 # Android Example Object
 ```json
 {
+  "foundText" : true,
   "blocks": {
     "blocktext": [
       "Home",

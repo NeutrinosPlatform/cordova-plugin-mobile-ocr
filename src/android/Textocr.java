@@ -311,8 +311,16 @@ public class Textocr extends CordovaPlugin {
                             }
                             if (textBlocks.size() == 0)
                             {
-                                callbackContext.error("Scan Failed: Found no text to scan");
-                                PluginResult r = new PluginResult(PluginResult.Status.ERROR);
+                                // Used to return error when no text found
+                                // callbackContext.error("Scan Failed: Found no text to scan");
+                                // PluginResult r = new PluginResult(PluginResult.Status.ERROR);
+                                // callbackContext.sendPluginResult(r);
+
+                                // Now return foundText false if text not found and return success
+                                resultobj.put("foundText", false);
+
+                                callbackContext.success(resultobj);
+                                PluginResult r = new PluginResult(PluginResult.Status.OK);
                                 callbackContext.sendPluginResult(r);
                             }
                             else
@@ -335,6 +343,8 @@ public class Textocr extends CordovaPlugin {
                                 resultobj.put("blocks", blockobj);
                                 resultobj.put("lines", lineobj);
                                 resultobj.put("words", wordobj);
+
+                                resultobj.put("foundText", true);
 
                                 callbackContext.success(resultobj);
                                 PluginResult r = new PluginResult(PluginResult.Status.OK);
