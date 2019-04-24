@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         id="cordova-plugin-mobile-ocr"
-        version="3.0.0">
+        version="3.1.0">
 
   <name>Textocr</name>
 
@@ -36,7 +36,7 @@
     </config-file>
    
     <source-file src="src/android/Textocr.java" target-dir="src/com/neutrinos/ocrplugin/" />
-    <framework src="com.google.android.gms:play-services-vision:11.6.2" />
+    <framework src="com.google.android.gms:play-services-vision:17.0.2" />
     
   </platform>
 
