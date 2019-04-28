@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-mobile-ocr",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/NeutrinosPlatform/cordova-plugin-mobile-ocr"
@@ -28,8 +28,9 @@
   ],
   "engines": {
     "cordovaDependencies": {
-      "cordova-android": ">=6.4.0",
-      "cordova-ios": ">=4.3.0"}
+      "cordova-android": ">=6.3.0",
+      "cordova-ios": ">=4.3.0"
+    }
   },
   "author": "jatahworx",
   "license": "ISC",

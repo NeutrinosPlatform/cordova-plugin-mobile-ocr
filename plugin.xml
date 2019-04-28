@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         id="cordova-plugin-mobile-ocr"
-        version="3.1.0">
+        version="3.1.1">
 
   <name>Textocr</name>
 
   <engines>
-    <engine name="cordova-android" version=">=6.4.0" />
+    <engine name="cordova-android" version=">=6.3.0" />
     <engine name="cordova-ios" version=">=4.3.0" />
   </engines>
 
