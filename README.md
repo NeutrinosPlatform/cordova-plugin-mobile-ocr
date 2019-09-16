@@ -7,7 +7,7 @@
 
 > **DOCUMENTATION** here applies only to plugin ver 3.x.x! The respective documentation of each of the versions is available with the npm release
 
-# cordova-plugin-mobile-ocr
+# cordova-plugin-mobile-ocr [![npm version](https://badge.fury.io/js/cordova-plugin-mobile-ocr.svg)](//npmjs.com/package/cordova-plugin-mobile-ocr)
 
 > This plugin was made possible because of [google mobile vision text recognition API](https://developers.google.com/vision/android/text-overview). The supported languages are listed in the [link](https://developers.google.com/vision/android/text-overview). This plugin is absolutely free and will work offline once install is complete. All required files required for Text Recognition are downloaded during install if necessary space is available.
 
