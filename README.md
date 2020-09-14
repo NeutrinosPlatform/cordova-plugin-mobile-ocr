@@ -132,7 +132,8 @@ function onFail(message) {
 **Using [cordova-plugin-document-scanner](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner)** 
 >*Note :- base64 and NATIVEURIs won't work with cordova-plugin-document-scanner plugin*
 ```js 
-scan.scanDoc(1, onSuccess, onFail);
+
+scan.scanDoc(successCallback, errorCallback, {sourceType : 1, fileName : "myfilename", quality : 1.0, returnBase64 : false}); 
 
 function onSuccess(imageURI) {
       textocr.recText(0, /*3,*/ imageURI, onSuccess, onFail); // removed returnType (here 3) from version 2.0.0
