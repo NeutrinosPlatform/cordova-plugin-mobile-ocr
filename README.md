@@ -135,7 +135,7 @@ function onFail(message) {
 
 scan.scanDoc(successCallback, errorCallback, {sourceType : 1, fileName : "myfilename", quality : 1.0, returnBase64 : false}); 
 
-function onSuccess(imageURI) {
+function successCallback(imageURI) {
       textocr.recText(0, /*3,*/ imageURI, onSuccess, onFail); // removed returnType (here 3) from version 2.0.0
       // for sourceType Use 0,2 // 1,3,4 won't work
       // for returnType Use 0,1,2 or 3 // 3 returns duplicates[see table]
@@ -150,7 +150,7 @@ function onSuccess(imageURI) {
             alert('Failed because: ' + message);
       }
 }
-function onFail(message) {
+function errorCallback(message) {
       alert('Failed because: ' + message);
 }
 ```
