@@ -15,10 +15,10 @@
 
 This plugin defines a global `textocr` object, which provides an method that accepts image uri or base64 inputs. If some text was detected in the image, this text will be returned as a string. The imageuri or base64 can be send to the plugin using any another plugin like [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera) or [cordova-plugin-document-scanner](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner). Although the object is attached to the global scoped `window`, it is not available until after the `deviceready` event.
 
-```
+```js
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-console.log(textocr);
+  console.log(textocr);
 }
 ```
 
