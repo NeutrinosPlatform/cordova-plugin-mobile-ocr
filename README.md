@@ -22,6 +22,7 @@ function onDeviceReady() {
 }
 ```
 
+
 # Supported Platforms
 
 - Android
