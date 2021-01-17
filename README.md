@@ -13,7 +13,7 @@
 
 
 
-This plugin defines a global `textocr` object, which provides an method that accepts image uri or base64 inputs. If some text was detected in the image, this text will be returned as a string. The imageuri or base64 can be send to the plugin using any another plugin like [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera) or [cordova-plugin-document-scanner](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner). Although the object is attached to the global scoped `window`, it is not available until after the `deviceready` event.
+This plugin defines a global `textocr` object, which provides a method that accepts image uri or base64 inputs. If some text was detected in the image, this text will be returned as a string. The imageuri or base64 can be send to the plugin using any another plugin like [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera) or [cordova-plugin-document-scanner](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner). Although the object is attached to the global scoped `window`, it is not available until after the `deviceready` event.
 
 ```js
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -21,7 +21,6 @@ function onDeviceReady() {
   console.log(textocr);
 }
 ```
-
 
 # Supported Platforms
 
@@ -38,9 +37,9 @@ npm link :- https://www.npmjs.com/package/cordova-plugin-mobile-ocr
 For **Android** that is all.
 
 For **iOS** please also follow the steps below.
-- Once the iOS platform is added in command line, change directory to where podfile is found. Example location :- (myapp/platforms/ios). 
-- Make sure you have [cocoapods](https://cocoapods.org/) installed then in command line do `pod update`. 
-- Now open myapp.xcworkspace which is usually found in the same directory as the podfile, then build and run. <br/> 
+- Once the iOS platform is added in command line, change directory to where podfile is found. Example: `cd platforms/ios`.
+- Make sure you have [cocoapods](https://cocoapods.org/) installed then in command line do `pod update`.
+- Now open myapp.xcworkspace which is usually found in the same directory as the podfile, then build and run. <br/>
 *Note :- if you use myapp.xcodeproj to build and run, it will not work and it will show a linker error.* <br/>
 *Note :- if you manually create the podfile, please refer to issue [#2](https://github.com/NeutrinosPlatform/cordova-plugin-mobile-ocr/issues/2)*
 
@@ -78,14 +77,14 @@ The **`returnType`** parameter can take values 0,1,2 or 3 each of which are expl
 ![N|Solid](https://developers.google.com/vision/images/text-structure.png "Difference between blocks, lines and words")
 
 - **uriOrBase**
-The plugin accepts image uri or base64 data in **`uriOrBase`** which is obtained from another plugin like cordova-plugin-document-scanner or cordova-plugin-camera.  This `uriOrBase` is then used by the plugin and via google mobile vision, it detects the text on the image. The data required for OCR is initially downloaded when the app is first installed. 
+The plugin accepts image uri or base64 data in **`uriOrBase`** which is obtained from another plugin like cordova-plugin-document-scanner or cordova-plugin-camera.  This `uriOrBase` is then used by the plugin and via google mobile vision, it detects the text on the image. The data required for OCR is initially downloaded when the app is first installed.
 
 > Example uriOrBase for NORMFILEURI or FASTFILEURI as obtained from [camera plugin](https://github.com/apache/cordova-plugin-camera) or [scanner plugin](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner) :- file:///var/mobile/Containers/Data/Application/FF505EA5-F16E-4CBA-8F8B-76A219EDA407/tmp/cdv_photo_001.jpg
 
 > Example uriOrBase for NORMNATIVEURI or FASTNATIVEURI as obtained from [camera plugin](https://github.com/apache/cordova-plugin-camera). [scanner plugin](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner) doesn't return this :- assets-library://asset/asset.JPG?id=EFBA7BCD-3031-4646-9874-49368849749A&ext=JPG
 
 - **successCallback**
-The return value is sent to the **`successCallback`** callback function, in string format if no errors occured. 
+The return value is sent to the **`successCallback`** callback function, in string format if no errors occured.
 
 - **errorCallback**
 The **`errorCallback`** function returns `Scan Failed: Found no text to scan` if no text was detected on the image. It also return other messages based on the error conditions.
@@ -105,8 +104,8 @@ Please use `cordova plugin add cordova-plugin-camera` or `cordova plugin add cor
 
 >*Note :- The cordova-plugin-mobile-ocr plugin will not automatically download either of these plugins as dependencies (This is because this plugin can be used as standalone plugin which can accept URIs or Base64 data through any method or plugin).*
 
-**Using [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera)** 
-```js 
+**Using [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera)**
+```js
 navigator.camera.getPicture(onSuccess, onFail, { quality: 100, correctOrientation: true });
 
 function onSuccess(imageData) {
@@ -130,11 +129,11 @@ function onFail(message) {
 
 ```
 
-**Using [cordova-plugin-document-scanner](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner)** 
+**Using [cordova-plugin-document-scanner](https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner)**
 >*Note :- base64 and NATIVEURIs won't work with cordova-plugin-document-scanner plugin*
-```js 
+```js
 
-scan.scanDoc(successCallback, errorCallback, {sourceType : 1, fileName : "myfilename", quality : 1.0, returnBase64 : false}); 
+scan.scanDoc(successCallback, errorCallback, {sourceType : 1, fileName : "myfilename", quality : 1.0, returnBase64 : false});
 
 function successCallback(imageURI) {
       textocr.recText(0, /*3,*/ imageURI, onSuccess, onFail); // removed returnType (here 3) from version 2.0.0
@@ -164,7 +163,7 @@ LinkedIn :- https://www.linkedin.com/company/25057297/ <br/>
 Twitter :- https://twitter.com/Neutrinosco <br/>
 Instagram :- https://www.instagram.com/neutrinos.co/
 
-[![N|Solid](https://image4.owler.com/logo/neutrinos_owler_20171023_142541_original.jpg "Neutrinos")](http://www.neutrinos.co/) 
+[![N|Solid](https://image4.owler.com/logo/neutrinos_owler_20171023_142541_original.jpg "Neutrinos")](http://www.neutrinos.co/)
 
 
 # Example Objects
@@ -172,12 +171,12 @@ Instagram :- https://www.instagram.com/neutrinos.co/
 
 The five properties text, languages, confidence, points and frame are obtained as arrays and are associated with each other using the index of the array.
 
->For example :- 
-The text **linetext[0]** contains the languages **linelanguages[0]** and have a confidence of **lineconfidence[0]** with **linepoints[0]** and **lineframe [0]**. 
+>For example :-
+The text **linetext[0]** contains the languages **linelanguages[0]** and have a confidence of **lineconfidence[0]** with **linepoints[0]** and **lineframe [0]**.
 
 >Refer the examples to see how the points and frame are returned. Points hold four (x,y) point values that can be used to draw a box around each text. The Frame holds the origin x,y value, the height and the width of the rectangle that can be drawn around the text. The x,y value returned from the Frame property usually correspond to x1 and y4 of the Points property. The Points and Frame values can be used to obtain the placement of the text on the image
 
-The basic structure of the object is as follows :- 
+The basic structure of the object is as follows :-
 
 > **foundText** was added in plugin version 3.0.0 and above. In earlier plugin versions if image did not contain text the error callback was called. From 3.0.0 onwards all success callbacks will contain the `foundText` key with a boolean value. Letting the user know if a text was present in the image. if `foundText` is false, text was not found and hence the `blocks`, `lines`, `words` keys won't be returned
 
@@ -185,7 +184,7 @@ The basic structure of the object is as follows :-
  - **blocks**
    - **blocktext** - **Array** that contains each text block
    - **blocklanguages** - **Array** of languages (Currently returns unusable values)
-   - **blockconfidence** - **Array** of confidence values (Currently return nil for on-Device text recognition) 
+   - **blockconfidence** - **Array** of confidence values (Currently return nil for on-Device text recognition)
    - **blockpoints** - **Array** of objects of four points each that represent a block drawn around the text
      - x1 - Key (Example to get x1 of the first text block :- recognizedText.blocks.blockpoints[0].x1)
      - y1 - Key
@@ -203,7 +202,7 @@ The basic structure of the object is as follows :-
  - **lines**
    - **linetext** - **Array** that contains each text block
    - **linelanguages** - **Array** of languages (Currently returns unusable values)
-   - **lineconfidence** - **Array** of confidence values (Currently return nil for on-Device text recognition) 
+   - **lineconfidence** - **Array** of confidence values (Currently return nil for on-Device text recognition)
    - **linepoints** - **Array** of objects of four points each that represent a block drawn around the text
         - x1 - Key
         - y1 - Key
@@ -221,7 +220,7 @@ The basic structure of the object is as follows :-
  - **words**
    - **wordtext** - **Array** that contains each text block
    - **wordlanguages** - **Array** of languages (Currently returns unusable values)
-   - **wordconfidence** - **Array** of confidence values (Currently return nil for on-Device text recognition) 
+   - **wordconfidence** - **Array** of confidence values (Currently return nil for on-Device text recognition)
    - **wordpoints** - **Array** of objects of four points each that represent a block drawn around the text
         - x1 - Key
         - y1 - Key
@@ -1219,4 +1218,3 @@ The basic structure of the object is as follows :-
   }
 }
 ```
-
