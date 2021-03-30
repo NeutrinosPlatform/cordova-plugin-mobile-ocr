@@ -39,7 +39,7 @@
     <framework src="com.google.android.gms:play-services-vision:17.0.2" />
   </platform>
 
-  <platform name="ios">
+  <!--<platform name="ios">
     <config-file target="config.xml" parent="/*">
       <feature name="Textocr">
         <param name="ios-package" value="Textocr" />
@@ -56,10 +56,10 @@
     <header-file src="src/ios/Textocr.h" target-dir="OcrPlugin"/>
     <source-file src="src/ios/Textocr.m" target-dir="OcrPlugin"/>
 
-    <framework src="GoogleMobileVision/TextDetector" type="podspec" spec="~> 1.3.2"/>
+    <framework src="GoogleMobileVision/TextDetector" type="podspec" spec="~> 1.3.2"/>-->
     <!--<framework src="GTMSessionFetcher" type="podspec" spec="~> 1.1.15"/>-->
     <!--<framework src="Protobuf" type="podspec" spec="~> 3.6.0"/>-->
     <!--<framework src="GoogleToolboxForMac" type="podspec" spec="~> 2.1.4"/>-->
-  </platform>
+  <!--</platform>-->
 
 </plugin>
