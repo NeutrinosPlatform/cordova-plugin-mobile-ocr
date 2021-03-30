@@ -8,7 +8,7 @@
 
   <engines>
     <engine name="cordova-android" version=">=6.3.0" />
-    <engine name="cordova-ios" version=">=4.3.0" />
+    <!--<engine name="cordova-ios" version=">=4.3.0" />-->
   </engines>
 
   <asset src="www/rectext.js" target="js/rectext.js"/>
@@ -39,6 +39,7 @@
     <framework src="com.google.android.gms:play-services-vision:17.0.2" />
   </platform>
 
+  <!--
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
       <feature name="Textocr">
@@ -61,5 +62,6 @@
     <!--<framework src="Protobuf" type="podspec" spec="~> 3.6.0"/>-->
     <!--<framework src="GoogleToolboxForMac" type="podspec" spec="~> 2.1.4"/>-->
   </platform>
+-->
 
 </plugin>
