@@ -25,7 +25,6 @@ function onDeviceReady() {
 # Supported Platforms
 
 - Android
-- iOS
 
 # Installation Steps
 
@@ -33,15 +32,6 @@ This requires cordova 7.1.0+ , cordova android 6.4.0+ and cordova ios 4.3.0+ <br
 npm link :- https://www.npmjs.com/package/cordova-plugin-mobile-ocr
 
 `cordova plugin add cordova-plugin-mobile-ocr`
-
-For **Android** that is all.
-
-For **iOS** please also follow the steps below.
-- Once the iOS platform is added in command line, change directory to where podfile is found. Example: `cd platforms/ios`.
-- Make sure you have [cocoapods](https://cocoapods.org/) installed then in command line do `pod update`.
-- Now open myapp.xcworkspace which is usually found in the same directory as the podfile, then build and run. <br/>
-*Note :- if you use myapp.xcodeproj to build and run, it will not work and it will show a linker error.* <br/>
-*Note :- if you manually create the podfile, please refer to issue [#2](https://github.com/NeutrinosPlatform/cordova-plugin-mobile-ocr/issues/2)*
 
 # Plugin Usage
 
