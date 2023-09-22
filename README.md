@@ -36,7 +36,7 @@ npm link :- https://www.npmjs.com/package/cordova-plugin-mobile-ocr
 
 For **Android** that is all.
 
-For **iOS** please also follow the steps below.
+For **iOS** please also follow the steps below :-
 - Once the iOS platform is added in command line, change directory to where podfile is found. Example location :- (myapp/platforms/ios). 
 - Make sure you have [cocoapods](https://cocoapods.org/) installed then in command line do `pod update`. 
 - Now open myapp.xcworkspace which is usually found in the same directory as the podfile, then build and run. <br/> 
